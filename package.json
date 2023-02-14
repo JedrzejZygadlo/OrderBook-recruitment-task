@@ -1,5 +1,5 @@
 {
-  "name": "abc",
+  "name": "order-book-recruitment-task",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "swiper": "^7.4.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {

@@ -4,3 +4,6 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare module "swiper/vue/swiper";
+declare module "swiper/vue/swiper-slide";
