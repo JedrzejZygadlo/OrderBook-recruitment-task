@@ -33,11 +33,11 @@ export default defineComponent({
       } else if (currencyType === CurrencySection.CRYPTO) {
         currentCryptoCurrency.value = newCurrencyValue;
       }
-      console.log("currentBaseCurrency", currentBaseCurrency.value);
-      console.log("currentCryptoCurrency", currentCryptoCurrency.value);
     };
     provide("currentCurrencyPair", currentCurrencyPair);
     provide("changeCurrency", changeCurrency);
+    provide("currentBaseCurrency", currentBaseCurrency);
+    provide("currentCryptoCurrency", currentCryptoCurrency);
   },
 });
 </script>

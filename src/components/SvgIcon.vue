@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent, computed } from "vue";
+import { SvgProps } from "../types";
 
 export default defineComponent({
   name: "SvgIcon",
@@ -38,7 +39,7 @@ export default defineComponent({
       required: false,
     },
   },
-  setup(props) {
+  setup(props: SvgProps) {
     const dynamicComponent = computed(() =>
       defineAsyncComponent(() => import(`./icons/${props.name}.vue`))
     );

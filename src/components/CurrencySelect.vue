@@ -1,23 +1,40 @@
 <template>
   <div class="currency-select-container">
-    <CurrencyTileView
-      v-for="currency in currenciesToDisplay"
-      :key="currency.name"
-      :currency="currency"
-      @click="setCurrency(currency.shortcut)"
+    <h3 v-if="isSelectText" class="currency-select-header">{{ selectText }}</h3>
+    <Swiper
+      class="currency-select-swiper"
+      :currenciesToDisplay="currenciesToDisplay"
+      :currencySection="currencySection"
     />
+    <div class="currency-select-mobile-container">
+      <CurrencyTileView
+        v-for="currency in currenciesToDisplay"
+        :key="currency.name"
+        :currency="currency"
+        :currencySection="currencySection"
+        @click="setCurrency(currency.shortcut)"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, PropType } from "vue";
+import { defineComponent, inject, PropType, computed } from "vue";
 import CurrencyTileView from "./CurrencyTile.vue";
-import { CurrencyTile } from "../types";
+import {
+  CurrencyTile,
+  CurrencySection,
+  CurrencySelectProps,
+  CurrencySelectHeader,
+  ChangeCurrencyFunction,
+} from "../types";
+import Swiper from "./Swiper.vue";
 
 export default defineComponent({
   name: "CurrencySelect",
   components: {
     CurrencyTileView,
+    Swiper,
   },
   props: {
     currenciesToDisplay: {
@@ -29,17 +46,66 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  setup(props: CurrencySelectProps) {
     const currentCurrencyPair = inject("currentCurrencyPair") as string;
-    const changeCurrency = inject("changeCurrency") as (
-      currencyType: string,
-      newCurrencyValue: string
-    ) => void;
-    const setCurrency = (shortcut: string) =>
+
+    const changeCurrency = inject("changeCurrency") as ChangeCurrencyFunction;
+
+    const setCurrency = (shortcut: string): void =>
       changeCurrency(props.currencySection, shortcut);
-    return { currentCurrencyPair, changeCurrency, setCurrency };
+
+    const isBaseCurrencySection = computed<boolean>(
+      () => props.currencySection === CurrencySection.BASE
+    );
+
+    const isCryptoCurrencySection = computed<boolean>(
+      () => props.currencySection === CurrencySection.CRYPTO
+    );
+
+    const isSelectText = computed<boolean>(
+      () => isBaseCurrencySection.value || isCryptoCurrencySection.value
+    );
+
+    const selectText = computed<string>(() => {
+      if (isBaseCurrencySection.value)
+        return CurrencySelectHeader.BASE_CURRENCY_HEADER;
+      else if (isCryptoCurrencySection.value)
+        return CurrencySelectHeader.CRYPTO_CURRENCY_HEADER;
+      return CurrencySelectHeader.DEFAULT_CURRENCY_HEADER;
+    });
+
+    return {
+      currentCurrencyPair,
+      changeCurrency,
+      setCurrency,
+      isSelectText,
+      selectText,
+    };
   },
 });
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import "../styles/variables.scss";
+
+.currency-select-container {
+  margin: $spacing-4;
+  padding: $spacing-4 $spacing-3;
+  border-radius: 20px;
+  box-shadow: $box-shadow;
+  .currency-select-header {
+    margin: 0 auto $spacing-4 auto;
+  }
+  .currency-select-swiper {
+    display: none;
+    @include tabletAndDesktop {
+      display: block;
+    }
+  }
+  .currency-select-mobile-container {
+    @include tabletAndDesktop {
+      display: none;
+    }
+  }
+}
+</style>
