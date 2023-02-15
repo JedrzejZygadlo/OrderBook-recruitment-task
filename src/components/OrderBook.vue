@@ -4,7 +4,7 @@
     <div class="order-book-spread-container">
       <p class="order-book-spread">Spread value: {{ spread.toFixed(6) }}</p>
       <p class="order-book-spread">
-        Spread(%): {{ spredPercentage.toFixed(2) }}%
+        Spread(%): {{ spreadPercentage.toFixed(2) }}%
       </p>
     </div>
     <div class="order-book-columns-wrapper">
@@ -36,7 +36,7 @@ export default defineComponent({
     const sellOrders = ref<Array<OrderData>>([]);
     const interval = ref<number>();
     const spread = ref<number>(0);
-    const spredPercentage = ref<number>(0);
+    const spreadPercentage = ref<number>(0);
 
     const currentCurrencyPair = inject<Ref<string>>(
       "currentCurrencyPair",
@@ -65,7 +65,8 @@ export default defineComponent({
         .then((response) => {
           const { buy, sell } = response.data;
           spread.value = sell[0].ra - buy[0].ra;
-          spredPercentage.value = ((sell[0].ra - buy[0].ra) / sell[0].ra) * 100;
+          spreadPercentage.value =
+            ((sell[0].ra - buy[0].ra) / sell[0].ra) * 100;
           buyOrders.value = [...buy];
           sellOrders.value = [...sell];
         })
@@ -74,7 +75,7 @@ export default defineComponent({
         });
     };
 
-    return { buyOrders, sellOrders, spread, spredPercentage };
+    return { buyOrders, sellOrders, spread, spreadPercentage };
   },
 });
 </script>

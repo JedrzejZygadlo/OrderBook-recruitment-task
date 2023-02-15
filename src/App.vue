@@ -39,6 +39,13 @@ export default defineComponent({
     provide("changeCurrency", changeCurrency);
     provide("currentBaseCurrency", currentBaseCurrency);
     provide("currentCryptoCurrency", currentCryptoCurrency);
+
+    return {
+      currentBaseCurrency,
+      currentCryptoCurrency,
+      currentCurrencyPair,
+      changeCurrency,
+    };
   },
 });
 </script>

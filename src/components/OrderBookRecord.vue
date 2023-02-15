@@ -29,7 +29,7 @@ export default defineComponent({
     const dataRecords = computed<Array<string | number>>(() => [
       props.record.co,
       Number(props.record.ca),
-      totalValue.value.toFixed(6),
+      Number(totalValue.value.toFixed(6)),
       Number(props.record.ra),
     ]);
 

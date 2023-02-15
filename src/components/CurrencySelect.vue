@@ -8,6 +8,7 @@
     />
     <div class="currency-select-mobile-container">
       <CurrencyTileView
+        class="currency-tile"
         v-for="currency in currenciesToDisplay"
         :key="currency.name"
         :currency="currency"
@@ -83,6 +84,8 @@ export default defineComponent({
       setCurrency,
       isSelectText,
       selectText,
+      isBaseCurrencySection,
+      isCryptoCurrencySection,
     };
   },
 });

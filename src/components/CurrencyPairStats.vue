@@ -130,6 +130,9 @@ export default defineComponent({
       currentCryptoCurrency,
       currencyPairFull,
       stats,
+      getStats,
+      getTicker,
+      sendStatsRequest,
     };
   },
 });

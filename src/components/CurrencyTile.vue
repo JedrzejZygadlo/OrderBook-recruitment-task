@@ -67,6 +67,7 @@ export default defineComponent({
       isSelected,
       isBaseCurrencySection,
       isCryptoCurrencySection,
+      currentBaseCurrency,
     };
   },
 });
