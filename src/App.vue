@@ -1,14 +1,14 @@
 <template>
   <div class="order-book-main-conainter">
     <CurrencyPairChoice />
-    <OrderBook />
+    <CurrencyPairData />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, provide, ref, computed } from "vue";
 import CurrencyPairChoice from "./components/CurrencyPairChoice.vue";
-import OrderBook from "./components/OrderBook.vue";
+import CurrencyPairData from "./components/CurrencyPairData.vue";
 import type { Ref } from "vue";
 import { CurrencySection } from "./types";
 
@@ -16,7 +16,7 @@ export default defineComponent({
   name: "App",
   components: {
     CurrencyPairChoice,
-    OrderBook,
+    CurrencyPairData,
   },
   setup() {
     let currentBaseCurrency: Ref<string> = ref("PLN");
@@ -34,6 +34,7 @@ export default defineComponent({
         currentCryptoCurrency.value = newCurrencyValue;
       }
     };
+
     provide("currentCurrencyPair", currentCurrencyPair);
     provide("changeCurrency", changeCurrency);
     provide("currentBaseCurrency", currentBaseCurrency);
@@ -43,12 +44,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "./styles/variables.scss";
+body {
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: $darkGray;
+  max-width: $maxWidth;
+  margin: auto;
 }
 </style>

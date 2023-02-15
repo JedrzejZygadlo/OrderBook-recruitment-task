@@ -1,7 +1,7 @@
 <template>
   <div>
     <swiper
-      :slides-per-view="6"
+      :slides-per-view="7"
       :space-between="20"
       :breakpoints="swiperOptions.breakpoints"
       :navigation="swiperOptions.navigation"
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, PropType, computed } from "vue";
+import { defineComponent, inject, PropType, computed, Ref } from "vue";
 import CurrencyTileView from "./CurrencyTile.vue";
 import { Swiper } from "swiper/vue/swiper";
 import { SwiperSlide } from "swiper/vue/swiper-slide";
@@ -28,7 +28,6 @@ import {
   CurrencyTile,
   CurrencySection,
   CurrencySelectProps,
-  InjectionText,
   ChangeCurrencyFunction,
 } from "../types";
 import "swiper/swiper.scss";
@@ -61,7 +60,7 @@ export default defineComponent({
         },
 
         1024: {
-          slidesPerView: 6,
+          slidesPerView: 7,
           spaceBetween: 15,
         },
       },
@@ -71,9 +70,15 @@ export default defineComponent({
       },
     };
 
-    const currentCurrencyPair: InjectionText = inject("currentCurrencyPair");
+    const currentCurrencyPair = inject<Ref<string>>(
+      "currentCurrencyPair",
+      computed(() => "BTC/PLN")
+    );
 
-    const currentBaseCurrency: InjectionText = inject("currentBaseCurrency");
+    const currentBaseCurrency = inject<Ref<string>>(
+      "currentBaseCurrency",
+      computed(() => "PLN")
+    );
 
     const prevElementClassUnique = computed<string>(
       () => `swiper-button-prev-${props.currencySection}`

@@ -1,6 +1,5 @@
 <template>
   <div class="currency-pair-choice-container">
-    <h2 class="currency-pair-header">Choose currency pair</h2>
     <CurrencySelect
       :currencies-to-display="baseCurrencies"
       :currency-section="`base`"

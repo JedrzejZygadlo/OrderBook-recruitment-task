@@ -187,3 +187,9 @@ export const cryptoCurrencies = currencies.filter(
   (currency) =>
     currency.type === CurrencyType.FIRST || currency.type === CurrencyType.BOTH
 );
+
+export const takeCurrencyNameFromShortcut = (shortcut: string): string => {
+  return (
+    currencies.find((currency) => currency.shortcut === shortcut)?.name ?? ""
+  );
+};

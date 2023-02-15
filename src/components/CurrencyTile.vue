@@ -16,12 +16,7 @@
 <script lang="ts">
 import { defineComponent, computed, inject, PropType, Ref } from "vue";
 import SvgIcon from "./SvgIcon.vue";
-import {
-  CurrencySection,
-  CurrencyTile,
-  CurrencyTileProps,
-  InjectionText,
-} from "../types";
+import { CurrencySection, CurrencyTile, CurrencyTileProps } from "../types";
 
 export default defineComponent({
   name: "CurrencyTileView",
@@ -37,10 +32,14 @@ export default defineComponent({
     },
   },
   setup(props: CurrencyTileProps) {
-    const currentBaseCurrency: InjectionText = inject("currentBaseCurrency");
+    const currentBaseCurrency = inject<Ref<string>>(
+      "currentBaseCurrency",
+      computed(() => "PLN")
+    );
 
-    const currentCryptoCurrency: InjectionText = inject(
-      "currentCryptoCurrency"
+    const currentCryptoCurrency = inject<Ref<string>>(
+      "currentCryptoCurrency",
+      computed(() => "BTC")
     );
 
     const isBaseCurrencySection = computed<boolean>(

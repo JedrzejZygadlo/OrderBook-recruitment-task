@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, PropType, computed } from "vue";
+import { defineComponent, inject, PropType, computed, Ref } from "vue";
 import CurrencyTileView from "./CurrencyTile.vue";
 import {
   CurrencyTile,
@@ -47,7 +47,10 @@ export default defineComponent({
     },
   },
   setup(props: CurrencySelectProps) {
-    const currentCurrencyPair = inject("currentCurrencyPair") as string;
+    const currentCurrencyPair = inject<Ref<string>>(
+      "currentCurrencyPair",
+      computed(() => "BTC/PLN")
+    );
 
     const changeCurrency = inject("changeCurrency") as ChangeCurrencyFunction;
 
@@ -95,6 +98,12 @@ export default defineComponent({
   box-shadow: $box-shadow;
   .currency-select-header {
     margin: 0 auto $spacing-4 auto;
+    @include tablet {
+      font-size: $sm;
+    }
+    @include desktop {
+      font-size: $xl;
+    }
   }
   .currency-select-swiper {
     display: none;
