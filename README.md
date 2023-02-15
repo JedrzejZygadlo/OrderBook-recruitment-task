@@ -60,14 +60,14 @@ In addition spread is calculated (in two variants):
 - as an absolute value: (ask - bid)
 - in percentage value: ((ask - bid)/ask)* 100%
 
-![order-book](https://user-images.githubusercontent.com/38325349/219133702-04987c60-7f0a-4d01-8d6f-6f919149a7d2.JPG)
+![order-book2](https://user-images.githubusercontent.com/38325349/219140029-6b328687-943a-46f9-a94a-3d4f7520eac8.JPG)
 
 #### Mobile view 
 ![mobile 1](https://user-images.githubusercontent.com/38325349/219136535-fc93ce69-ecd7-4f8b-9ff0-40c3dd4bf49b.JPG)
 
 ![mobile 2](https://user-images.githubusercontent.com/38325349/219136540-14639bde-2d5f-4973-9e07-71f88323dbf8.JPG)
 
-![mobile 3](https://user-images.githubusercontent.com/38325349/219136557-a07f23d4-d093-47b2-af4d-fc784ce4fd9a.JPG)
+![mobile 4](https://user-images.githubusercontent.com/38325349/219139931-34789a52-af4c-448a-a78f-5a83d79dd8d9.JPG)
 
 
 ## Tests
