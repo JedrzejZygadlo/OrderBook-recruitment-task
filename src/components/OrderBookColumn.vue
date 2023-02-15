@@ -68,11 +68,11 @@ export default defineComponent({
     padding: $spacing-4 0;
     background-color: $lightBlue;
     @include centered-flex-content;
-    :first-child {
+    :last-child {
       display: none;
     }
     @include tabletAndDesktop {
-      :first-child {
+      :last-child {
         display: block;
       }
     }

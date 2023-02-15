@@ -36,10 +36,10 @@ export enum StatsProperty {
 }
 
 export enum BookOrderColumnName {
-  COUNT = "COUNT",
+  PRICE = "PRICE",
   AMOUNT = "AMOUNT",
   TOTAL = "TOTAL",
-  PRICE = "PRICE",
+  COUNT = "COUNT",
 }
 
 export enum ColumnType {

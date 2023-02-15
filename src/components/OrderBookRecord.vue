@@ -27,10 +27,10 @@ export default defineComponent({
     );
 
     const dataRecords = computed<Array<string | number>>(() => [
-      props.record.co,
+      Number(props.record.ra),
       Number(props.record.ca),
       Number(totalValue.value.toFixed(6)),
-      Number(props.record.ra),
+      props.record.co,
     ]);
 
     return { dataRecords, totalValue };
@@ -43,11 +43,11 @@ export default defineComponent({
 .order-book-record-container {
   @include centered-flex-content;
   padding: $spacing-4 0;
-  :first-child {
+  :last-child {
     display: none;
   }
   @include tabletAndDesktop {
-    :first-child {
+    :last-child {
       display: block;
     }
   }
