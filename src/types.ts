@@ -28,6 +28,30 @@ export enum CurrencySelectHeader {
   DEFAULT_CURRENCY_HEADER = "Choose currency:",
 }
 
+export enum StatsProperty {
+  RATE = "Rate",
+  MIN = "Min(24h)",
+  MAX = "Max(24h)",
+  VOLUME = "Volume",
+}
+
+export enum BookOrderColumnName {
+  COUNT = "COUNT",
+  AMOUNT = "AMOUNT",
+  TOTAL = "TOTAL",
+  PRICE = "PRICE",
+}
+
+export enum ColumnType {
+  BUY = "buy",
+  SELL = "sell",
+}
+
+export enum OperationText {
+  BUY = "Bid offers",
+  SELL = "Ask offers",
+  DEFAULT = "Offers",
+}
 export interface CurrencySelectProps {
   currenciesToDisplay: CurrencyTile[];
   currencySection: string;
@@ -45,9 +69,20 @@ export interface SvgProps {
   viewBox?: string;
 }
 
-export type InjectionText = Ref<string> | undefined;
+export interface OrderData {
+  ra: string;
+  ca: string;
+  sa: string;
+  pa: string;
+  co: number;
+}
 
 export type ChangeCurrencyFunction = (
   currencyType: string,
   newCurrencyValue: string
 ) => void;
+
+export interface Stat {
+  name: string;
+  value: number;
+}
